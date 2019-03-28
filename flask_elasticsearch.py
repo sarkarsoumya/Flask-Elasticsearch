@@ -19,8 +19,10 @@ class FlaskElasticsearch(object):
     def init_app(self, app, **kwargs):
         app.config.setdefault('ELASTICSEARCH_HOST', 'localhost:9200')
         app.config.setdefault('ELASTICSEARCH_HTTP_AUTH', None)
+        app.config.setdefault('ELASTICSEARCH_INDEX', None)
 
         self.elasticsearch_options = kwargs
+        self.index_name = app.config["ELASTICSEARCH_INDEX"]
 
         # Use the newstyle teardown_appcontext if it's available,
         # otherwise fall back to the request context
